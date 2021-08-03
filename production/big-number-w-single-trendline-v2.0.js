@@ -188,7 +188,10 @@ const visObject = {
       legend: {
         enabled: false
       },
-      credit: {
+      credits: {
+        text: "Legacy Version"
+      },
+      exporting: {
         enabled: false
       },
       plotOptions: {

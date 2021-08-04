@@ -182,7 +182,7 @@ const visObject = {
       },
       yAxis: {
         title: {
-          text: metricsTitle
+          text: undefined
         }
       },
       legend: {

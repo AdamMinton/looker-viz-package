@@ -318,7 +318,7 @@ const visObject = {
           + '<br>'
           + '<br>'
           + '<br>'
-          + '<p class="highcharts-metrics-value-latest">' + humanReadableNumber(percentageNumber(asOfDateValue.toFixed(2), config.is_percentage_number),config.is_human_readable) + "</p>",
+          + '<p class="highcharts-metrics-value-latest">' + humanReadableNumber(percentageNumber(asOfDateValue.toFixed(4), config.is_percentage_number),config.is_human_readable) + "</p>",
         align: "left",
       },
       subtitle: {

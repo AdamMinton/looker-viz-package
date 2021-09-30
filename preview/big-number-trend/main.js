@@ -72,6 +72,18 @@ const visObject = {
       default: "7",
       values: [{ 3: "3" }, { 4: "4" }, { 6: "6" }, { 7: "7" }, { 14: "14" }, { 30: "30" }],
     },
+    prefix: {
+      type: "string",
+      display: "text",
+      label: "8. Prefix of Metrics",
+      default: ""
+    },
+    suffix: {
+      type: "string",
+      display: "text",
+      label: "9. Suffix of Metrics",
+      default: ""
+    },
   },
   create: function (element, config) {
     element.innerHTML = `
@@ -91,62 +103,103 @@ const visObject = {
       }
       
       .highcharts-title {
-        font-family: "Circular Spotify Text", Helvetica, Arial, sans-serif;
+        // font-family: "Circular Spotify Text", Helvetica, Arial, sans-serif;
+        font-family: "Google Sans", Roboto, "Noto Sans JP", "Noto Sans", "Noto Sans CJK KR", Helvetica, Arial, sans-serif;
         color: "#181818";
         font-size: 24px !important;
         margin-bottom: 10px;
+        font-weight: 400;
       }
       
       .highcharts-metrics-value-latest {
-        font-family: "Circular Spotify Text", Helvetica, Arial, sans-serif;
+        // font-family: "Circular Spotify Text", Helvetica, Arial, sans-serif;
+        font-family: "Google Sans", Roboto, "Noto Sans JP", "Noto Sans", "Noto Sans CJK KR", Helvetica, Arial, sans-serif;
         color: "#181818";
         font-size: 50px;
-        font-weight: 600;
         line-height: 52px;
       }
       
       .highcharts-subtitle {
-        font-family: "Circular Spotify Text", Helvetica, Arial, sans-serif;
+        // font-family: "Circular Spotify Text", Helvetica, Arial, sans-serif;
+        font-family: "Google Sans", Roboto, "Noto Sans JP", "Noto Sans", "Noto Sans CJK KR", Helvetica, Arial, sans-serif;
         color: "#181818";
         font-size: 14px;
       }
-
+      
       .highcharts-subtitle text {
-        font-family: "Circular Spotify Text", Helvetica, Arial, sans-serif;
+        // font-family: "Circular Spotify Text", Helvetica, Arial, sans-serif;
+        font-family: "Google Sans", Roboto, "Noto Sans JP", "Noto Sans", "Noto Sans CJK KR", Helvetica, Arial, sans-serif;
         color: "#181818";
         font-size: 14px;
         fill: #999999 !important;
       }
       
       .highcharts-axis-title {
-        font-family: "Circular Spotify Text", Helvetica, Arial, sans-serif;
+        // font-family: "Circular Spotify Text", Helvetica, Arial, sans-serif;
+        font-family: "Google Sans", Roboto, "Noto Sans JP", "Noto Sans", "Noto Sans CJK KR", Helvetica, Arial, sans-serif;
       }
-
+      
+      .highcharts-axis-labels {
+        font-family: "Google Sans", Roboto, "Noto Sans JP", "Noto Sans", "Noto Sans CJK KR", Helvetica, Arial, sans-serif;
+      }
+      
       .highcharts-axis-labels .highcharts-yaxis-labels {
-        font-family: "Circular Spotify Text", Helvetica, Arial, sans-serif;
-        fill: #999999 !important;
-      }
-
-      .highcharts-axis-labels .highcharts-xaxis-labels {
-        font-family: "Circular Spotify Text", Helvetica, Arial, sans-serif;
+        // font-family: "Circular Spotify Text", Helvetica, Arial, sans-serif;
+        font-family: "Google Sans", Roboto, "Noto Sans JP", "Noto Sans", "Noto Sans CJK KR", Helvetica, Arial, sans-serif;
         fill: #999999 !important;
       }
       
-      .highcharts-subtitle .highcharts-metrics-growth-rate {
-        font-family: "Circular Spotify Text", Helvetica, Arial, sans-serif;
-        font-style: Bold !important;
-        font-size: 16px !important;
-        margin: 0px;
+      .highcharts-axis-labels .highcharts-xaxis-labels {
+        // font-family: "Circular Spotify Text", Helvetica, Arial, sans-serif;
+        font-family: "Google Sans", Roboto, "Noto Sans JP", "Noto Sans", "Noto Sans CJK KR", Helvetica, Arial, sans-serif;
+        fill: #999999 !important;
       }
+      
       .highcharts-metrics-by {
         font-size: 14px;
         font-style: italic;
+        font-family: "Google Sans", Roboto, "Noto Sans JP", "Noto Sans", "Noto Sans CJK KR", Helvetica, Arial, sans-serif;
         fill: #999999 !important;
       }
+      
+      .highcharts-metrics-value-prefix {
+        font-size: 14px;
+        font-style: Italic;
+      }
+      
+      .highcharts-metrics-value-suffix {
+        font-size: 14px;
+        font-style: italic;
+        font-family: "Google Sans", Roboto, "Noto Sans JP", "Noto Sans", "Noto Sans CJK KR", Helvetica, Arial, sans-serif;
+        fill: #999999 !important;
+      }
+      
+      .highcharts-data-label {
+        font-family: "Google Sans", Roboto, "Noto Sans JP", "Noto Sans", "Noto Sans CJK KR", Helvetica, Arial, sans-serif;
+        font-weight: 200;
+      }
+      
       .highcharts-as-of-date {
         font-size: 12px;
         font-style: italic;
         fill: #999999 !important;
+      }
+      
+      .highcharts-metrics-value-prefix {
+        font-size: 14px;
+        font-style: Italic;
+      }
+
+      .highcharts-metrics-value-suffix {
+        font-size: 14px;
+        font-style: italic;
+        font-family: "Google Sans", Roboto, "Noto Sans JP", "Noto Sans", "Noto Sans CJK KR", Helvetica, Arial, sans-serif;
+        fill: #999999 !important;
+      }
+
+      .highcharts-data-label {
+        font-family: "Google Sans", Roboto, "Noto Sans JP", "Noto Sans", "Noto Sans CJK KR", Helvetica, Arial, sans-serif;
+        font-weight: 200;
       }
       </style>
       <figure class="highcharts-figure">
@@ -318,7 +371,9 @@ const visObject = {
           + '<br>'
           + '<br>'
           + '<br>'
-          + '<p class="highcharts-metrics-value-latest">' + humanReadableNumber(percentageNumber(asOfDateValue.toFixed(4), config.is_percentage_number),config.is_human_readable) + "</p>",
+          + '<p class="highcharts-metrics-value-latest">' + config.prefix 
+          + humanReadableNumber(percentageNumber(asOfDateValue.toFixed(4), config.is_percentage_number),config.is_human_readable) 
+          + '<span class="highcharts-metrics-value-suffix">' + ' ' +config.suffix + '</span>',
         align: "left",
       },
       subtitle: {
@@ -351,7 +406,7 @@ const visObject = {
       plotOptions: {
         area: {
           fillColor: {
-            linearGradient: [0, 0, 0, 200],
+            linearGradient: [0, 0, 0, 300],
             stops: [
               [0, Highcharts.getOptions().colors[0]],
               [1, Highcharts.color(Highcharts.getOptions().colors[0]).setOpacity(0).get("rgba"),],
@@ -397,6 +452,16 @@ const visObject = {
           visible: config.is_show_moving_average_line,
         },
       ],
+      tooltip: {
+        formatter: function() {
+          // console.log(this.series)
+          return this.series.name + ":" + '<br>' + humanReadableNumber(percentageNumber(parseFloat(this.y), config.is_percentage_number),config.is_human_readable) 
+        },
+        style: {
+          color: "#000000",
+          fontFamily: '"Google Sans", Roboto, "Noto Sans JP", "Noto Sans", "Noto Sans CJK KR", Helvetica, Arial, sans-serif'
+        }
+      },
     });
     done();
   },

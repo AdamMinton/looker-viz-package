@@ -1,6 +1,4 @@
 var generateDataRecords = (dataIndexFormat) => {
-  //HELP: convert looker response data into common records format
-  //NOTE: used by metrics-widget__big-number
   var dataRecords = []
   dataIndexFormat.forEach(d=>{
     obj = {}
@@ -14,13 +12,10 @@ var generateDataRecords = (dataIndexFormat) => {
 }
 
 function generateHighChartsDataSeries(dataRecordsInput) {
-  //HELP: convert DataRecords into HighChart DataSeries without Header/Column Name
-  //NOTE: used by metrics-widget__big-number
   dataHighCharts = []
   dataRecordsInput.forEach(function(d) {
     var rowValueOnly = []
     var columnNames = Object.keys(d);
-    // console.log(columnNames);
     columnNames.forEach(function(c) {
       rowValueOnly.push(d[c])
     })
@@ -30,10 +25,6 @@ function generateHighChartsDataSeries(dataRecordsInput) {
 }
 
 function getFieldMetaInfoValue(queryResponse, fieldName) {
-  //HELP: look up meta info of looker fields
-  // @queryResponse: looker Response
-  // @fieldName: viewName.fieldTechicalName
-  // @return: array of metainfo of this field
   const queryResponseFieldsDimensions = queryResponse.fields.dimensions
   const queryResponseFieldsMeasures = queryResponse.fields.measures
 
@@ -51,8 +42,6 @@ function getFieldMetaInfoValue(queryResponse, fieldName) {
 }
 
 function calculateAggregatedValue(inputArray1D, aggregationType) {
-  // HELP
-  // @aggregationType - String: sum, average, min, max, median
   switch (aggregationType) {
     case "sum":
       return d3.sum(inputArray1D);
@@ -75,22 +64,6 @@ function calculateAggregatedValue(inputArray1D, aggregationType) {
   }
 }
 
-function humanReadableNumber(value, is_human_readable) {
-  if (is_human_readable == true) {
-    return numeral(value).format("0.00a")
-  } else {
-    return value
-  }
-}
-
-function percentageNumber(value, is_percentage_number) {
-  if (is_percentage_number == true) {
-    return numeral(value).format("0.00%")
-  } else {
-    return value
-  }
-}
-
 function translateAggregationType(aggregationType) {
   switch (aggregationType) {
     case "sum":
@@ -108,5 +81,21 @@ function translateAggregationType(aggregationType) {
     case "median":
       return "Median";
       break;
+  }
+}
+
+function humanReadableNumber(value, is_human_readable) {
+  if (is_human_readable == true) {
+    return numeral(value).format("0.00a")
+  } else {
+    return value
+  }
+}
+
+function percentageNumber(value, is_percentage_number) {
+  if (is_percentage_number == true) {
+    return numeral(value).format("0.00%")
+  } else {
+    return value
   }
 }

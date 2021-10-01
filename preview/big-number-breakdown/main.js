@@ -1,7 +1,6 @@
 // ANCHOR: Global Input Parameters
 // NOTE: this is the naming to follow in .lkml
 
-const inputDimensionBreakdownNameLookML = "_breakdown";
 const { tidy, select, distinct, arrange, desc } = Tidy;
 
 const visObject = {
@@ -176,7 +175,7 @@ const visObject = {
     var pointHeightResponsive = parseInt((highchartsFigureHeight / dataRecords.length) * 0.45);
 
     var viewName = queryResponse.fields.dimensions.length > 0 ? queryResponse.fields.dimensions[0].view : queryResponse.fields.measures[0].view;
-    var dimensionName = viewName + "." + inputDimensionBreakdownNameLookML;
+    var dimensionName = queryResponse.fields.dimensions[0].name;
     dimensionMetaInfoValue = getFieldMetaInfoValue(queryResponse, dimensionName);
     breakdownName = dimensionMetaInfoValue[0].label_short;
     breakdownDescription = dimensionMetaInfoValue[0].description;

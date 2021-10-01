@@ -76,13 +76,13 @@ const visObject = {
       type: "string",
       display: "text",
       label: "8. Prefix of Metrics",
-      default: ""
+      default: " "
     },
     suffix: {
       type: "string",
       display: "text",
       label: "9. Suffix of Metrics",
-      default: ""
+      default: " "
     },
   },
   create: function (element, config) {

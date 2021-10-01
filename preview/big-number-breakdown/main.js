@@ -44,13 +44,13 @@ const visObject = {
       type: "string",
       display: "text",
       label: "6. Prefix of Metrics",
-      default: ""
+      default: " "
     },
     suffix: {
       type: "string",
       display: "text",
       label: "7. Suffix of Metrics",
-      default: ""
+      default: " "
     },
     orientation: {
       type: "string",

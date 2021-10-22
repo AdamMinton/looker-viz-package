@@ -68,6 +68,7 @@ const visObject = {
       .highcharts-figure #container{
         height: 90%;
         width: 90%;
+        margin-left: 20px;
         position: absolute;
       }
       .highcharts-figure #container:hover {

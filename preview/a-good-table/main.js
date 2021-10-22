@@ -620,16 +620,18 @@ const visObject = {
 
     var dataRows = generateHighChartsDataSeries(dataRecords);
 
-    $("#container").DataTable({
+    var table = $("#container").DataTable({
       data: dataRows,
       columns: columnsDataTable,
-      searching: false,
+      searching: true,
       // fixedHeader: false,
-      select: false,
-      colReorder: false,
-      responsive: false,
-      mark: false,
+      select: true,
+      colReorder: true,
+      responsive: true,
+      mark: true,
     });
+
+    table.draw()
 
     done();
   },

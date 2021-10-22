@@ -91,7 +91,7 @@ const visObject = {
       .highcharts-figure #container{
         height: 90%;
         width: 90%;
-        margin-left: 20px;
+        margin-left: -20px;
         position: absolute;
         // fully responsiveness
       }

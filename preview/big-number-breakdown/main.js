@@ -146,6 +146,12 @@ const visObject = {
         font-family: "Google Sans", Roboto, "Noto Sans JP", "Noto Sans", "Noto Sans CJK KR", Helvetica, Arial, sans-serif;
         font-weight: 200;
       }
+
+
+      .highcharts-credits {
+        font-style: italic;
+      }
+      
       </style>
       <figure class="highcharts-figure">
       <div id="container"></div>
@@ -296,7 +302,8 @@ const visObject = {
         enabled: false,
       },
       credits: {
-        enabled: false,
+        enabled: true, 
+        text: "Metrics Widget by Hong"
       },
       exporting: {
         enabled: false

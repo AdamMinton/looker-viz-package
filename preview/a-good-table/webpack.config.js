@@ -5,7 +5,7 @@ var webpackConfig = {
   entry: {
     a_good_table: "./src/main.js",
   },
-  resolve: { alias: { markjs: "mark.js/dist/jquery.mark.js" } },
+  resolve: { alias: { markjs: "datatables.mark.js/dist/datatables.mark.js" } },
   output: {
     filename: "[name].js",
     path: __dirname,

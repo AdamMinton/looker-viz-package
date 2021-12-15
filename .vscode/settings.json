@@ -1,0 +1,9 @@
+{
+  "liveServer.settings.https": {
+    "enable": true, //set it true to enable the feature.
+    "cert": "/Users/adamminton/.ssl/server.crt", //full path of the certificate
+    "key": "/Users/adamminton/.ssl/server.key", //full path of the private key
+    "passphrase": "ZoidF`reak243"
+  },
+  "liveServer.settings.port": 5502
+}

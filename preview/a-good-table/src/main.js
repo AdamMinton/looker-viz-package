@@ -1,9 +1,17 @@
 // dependecies
-// https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js
-// https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js
+//https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js
+//https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js
+//https://cdn.jsdelivr.net/gh/hongkuiw/looker-viz-package/preview/a-good-table/util.js
+//https://cdn.datatables.net/plug-ins/1.10.13/features/searchHighlight/dataTables.searchHighlight.min.js
+//https://cdn.datatables.net/plug-ins/1.10.13/features/mark.js/datatables.mark.min.js
+//https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.js
+import * as $ from "jquery";
+import "datatables.net";
+import "markjs";
+import * as utils from "./util.js";
+
 const visObject = {
-  options: {
-  },
+  options: {},
   create: function (element, config) {
     element.innerHTML = `
       <style>
@@ -601,24 +609,26 @@ const visObject = {
   },
   updateAsync: function (data, element, config, queryResponse, details, done) {
     this.clearErrors();
-    var dataRecords = generateDataRecords(data);
-    var fieldNames = Object.keys(dataRecords[0])
-    var queryResponseFieldsDimensions = queryResponse.fields.dimensions
-    var queryResponseFieldsMeasures = queryResponse.fields.measures
-    var fieldLabels = []
-    
-    fieldNames.forEach(d=>{
-      fieldLabels.push(getFieldMetaInfoValue(queryResponse, d)[0]['label_short'])
-    })
+    var dataRecords = utils.generateDataRecords(data);
+    var fieldNames = Object.keys(dataRecords[0]);
+    var queryResponseFieldsDimensions = queryResponse.fields.dimensions;
+    var queryResponseFieldsMeasures = queryResponse.fields.measures;
+    var fieldLabels = [];
 
-    var columnsDataTable = []
-    fieldLabels.forEach(d=>{
-      obj = {}
-      obj['title'] = d
-      columnsDataTable.push(obj)
-    })
+    fieldNames.forEach((d) => {
+      fieldLabels.push(
+        utils.getFieldMetaInfoValue(queryResponse, d)[0]["label_short"]
+      );
+    });
 
-    var dataRows = generateHighChartsDataSeries(dataRecords);
+    var columnsDataTable = [];
+    fieldLabels.forEach((d) => {
+      let obj = {};
+      obj["title"] = d;
+      columnsDataTable.push(obj);
+    });
+
+    var dataRows = utils.generateHighChartsDataSeries(dataRecords);
 
     function updateDataTable(dataRows) {
       var table = $("#container").DataTable({
@@ -630,13 +640,13 @@ const visObject = {
         colReorder: true,
         responsive: true,
         mark: true,
-      })
-      table.clear()
-      table.rows.add(dataRows)
-      table.draw()
+      });
+      table.clear();
+      table.rows.add(dataRows);
+      table.draw();
     }
 
-    updateDataTable(dataRows)
+    updateDataTable(dataRows);
 
     done();
   },

@@ -12,7 +12,7 @@
 
 3.  **Compile your code**
 
-    You need to compile your react code, let's run:
+    You need to compile your code, let's run:
 
     ```
     yarn build:development
@@ -24,10 +24,10 @@
     yarn start
     ```
 
-    Your compiled code can be found in this repo.
+    Your compiled code can be found in the specific folder for the visualization in the dist folder.
 
 4.  **Finalize and distribute your code**
-    You need to compile your react code, let's run:
+    You need to compile your code, let's run:
 
     ```
     yarn build:production

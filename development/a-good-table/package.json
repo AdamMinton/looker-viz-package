@@ -1,0 +1,27 @@
+{
+  "name": "a-good-table",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "dependencies": {
+    "datatables.net": "^1.11.3",
+    "datatables.net-dt": "^1.11.3",
+    "jquery": "^3.6.0",
+    "datatables.mark.js": "github:julmot/datatables.mark.js",
+    "mark.js": "github:julmot/mark.js"
+  },
+  "devDependencies": {
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.6.0",
+    "webpack-merge": "^5.8.0"
+  },
+  "main": "webpack.config.js",
+  "scripts": {
+    "start": "webpack-dev-server --env environment=development visualization=a-good-table",
+    "build:development": "webpack --config webpack.config.js --env environment=development visualization=a-good-table",
+    "build:production": "webpack --config webpack.config.js --env environment=production visualization=a-good-table"
+  },
+  "author": "",
+  "license": "ISC"
+}

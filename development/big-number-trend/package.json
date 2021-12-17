@@ -4,7 +4,9 @@
   "description": "",
   "private": true,
   "scripts": {
-    "build": "webpack --config webpack.config.js"
+    "start": "webpack-dev-server --env environment=development visualization=big-number-trend",
+    "build:development": "webpack --config webpack.config.js --env environment=development visualization=big-number-trend",
+    "build:production": "webpack --config webpack.config.js --env environment=production visualization=big-number-trend"
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +21,7 @@
   },
   "devDependencies": {
     "webpack": "^5.65.0",
-    "webpack-cli": "^4.9.1"
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.6.0"
   }
 }
